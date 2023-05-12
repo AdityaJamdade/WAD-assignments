@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Assignment 1B</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div class="container my-4">
+		<main id="output" class="bg-dark text-light p-4 rounded mb-4 w-50 mx-auto" style="letter-spacing: 2px;">
+		</main>
+
+		<div class="w-50 mx-auto mb-4 text-end">
+			<button class="btn btn-dark" onclick="fetchData()">Reload</button>
+		</div>
+
+		<form id="addNumberForm" class="p-4 border shadow-sm w-50 mx-auto">
+			<div class="mb-2">
+				<label for="firstName" class="form-label">First Name</label>
+				<input type="text" class="form-control" name="firstName" required id="firstName" aria-describedby="helpId" placeholder="Enter Your First Name">
+			</div>
+			<div class="mb-2">
+				<label for="lastName" class="form-label">Last Name</label>
+				<input type="text" class="form-control" name="lastName" required id="lastName" aria-describedby="helpId" placeholder="Enter Your Last Name">
+			</div>
+			<div class="mb-2">
+				<label for="age" class="form-label">Age</label>
+				<input type="text" class="form-control" name="age" required id="age" aria-describedby="helpId" placeholder="Enter Your Age">
+			</div>
+			<div class="mb-3">
+				<label for="email" class="form-label">Email ID</label>
+				<input type="email" class="form-control" name="email" required id="email" aria-describedby="helpId" placeholder="Enter Your email ID">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+			<hr>
+			<small class="small text-success" id="msg"></small>
+		</form>
+	</div>
+
+	<script>
+		const output = document.getElementById("output");
+
+		function fetchData() {
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					let data = JSON.parse(xhttp.responseText)
+
+					let string = `name: ${data.firstName} ${data.lastName} <hr>age: ${data.age}<hr>email: ${data.email}`;
+
+					// output.innerHTML = string;
+
+					w = window.open();
+					w.document.body.innerHTML = "<h1>User Details</h1><h3>";
+					w.document.body.innerHTML += string;
+					w.document.body.innerHTML += "</h3>";
+				}
+			};
+			xhttp.open("GET", "http://localhost:3000/", true);
+			xhttp.send();
+		}
+		document.body.onload = () => {
+			fetchData()
+
+			document.forms.addNumberForm.addEventListener("submit", (event) => {
+				event.preventDefault();
+				const firstName = event.target.firstName.value;
+				const lastName = event.target.lastName.value;
+				const age = event.target.age.value;
+				const email = event.target.email.value;
+
+				$("#msg").html("")
+				$.ajax({
+					type: 'post',
+					url: 'http://localhost:3000/',
+					data: JSON.stringify({
+						firstName, lastName, age, email
+					}),
+					contentType: "application/json; charset=utf-8",
+					traditional: true,
+					success: function(data) {
+						fetchData();
+						$("#msg").html("User Details Updated")
+					}
+				});
+			})
+		};
+	</script>
+</body>
+
+</html>

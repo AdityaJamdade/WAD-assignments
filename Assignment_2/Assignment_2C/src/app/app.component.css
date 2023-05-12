@@ -1,0 +1,33 @@
+* {
+    text-align: center;
+    color: aliceblue;
+
+}
+
+button {
+    font-size: large;
+    background-color: yellow;
+    color: black;
+}
+
+form {
+    text-align: center;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+}
+
+input {
+    margin-left: 15px;
+    padding: 5px;
+    margin: 5px;
+}
+
+button {
+    margin-left: 48%;
+}
+
+p {
+    font-size: large;
+    font-weight: bold;
+}

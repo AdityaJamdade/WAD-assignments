@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo jQuery Mobile</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+      ul {
+        display: flex;
+      }
+      li {
+        list-style: none;
+        padding: 10px;
+      }
+      li a {
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- first page -->
+    <div data-role="page" id="homepage" class="">
+      <div data-role="header">
+        <h1>jQuery Mobile</h1>
+        <div data-role="nav" style="background-color: #f5f5f5;">
+          <ul>
+            <li><a href="#homepage">Home</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="main" class="ui-content">
+        <h4>Home</h4>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
+        repellendus nulla rerum ad, beatae porro quaerat cupiditate dolore neque
+        nemo.
+      </div>
+
+      <div data-role="footer">
+        <!-- <h4>Footer</h4> -->
+        <center>
+            <a href="index.html" class="ui-btn ui-btn-inline">Home</a>
+            <a href="about_us.html" class="ui-btn ui-btn-inline">About</a>
+            <a href="login_register.html" class="ui-btn ui-btn-inline">Register</a>
+            </center>
+      </div>
+    </div>
+
+    <!-- another page -->
+    <div data-role="page" id="about">
+      <div data-role="header">
+        <h1>jQuery Mobile</h1>
+        <div data-role="navbar">
+          <ul>
+            <li><a href="#homepage">Home</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="main">
+        <h4>About page</h4>
+      </div>
+
+      <div data-role="footer">
+        <h5>Footer</h5>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    $("a").on("click", function (event) {
+      // Prevent the usual navigation behavior
+      event.preventDefault();
+      $.mobile.navigate($(this).attr("href"), {
+        foo: $(this).attr("data-foo"),
+      });
+      // Hypothetical content alteration based on the url. E.g, make
+      // an Ajax request for JSON data and render a template into the page.
+      alterContent($(this).attr("href"));
+    });
+  </script>
+</html>

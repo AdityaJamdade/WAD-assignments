@@ -1,0 +1,43 @@
+<h1>{{ title }}</h1>
+
+<form>
+  <a>Name:</a>
+  <input type="text" #name placeholder="Enter your name" name="Name" /> <br />
+  <a>Address:</a>
+  <input type="text" #address placeholder="Enter your Address" name="Address" />
+  <br />
+  <a>Contact:</a>
+  <input type="text" #contact placeholder="Enter your Contact" name="Contact" />
+  <br />
+  <a>Email:</a>
+  <input type="email" #email placeholder="Enter your Email" name="Email" />
+  <br />
+  <a>Password:</a>
+  <input
+    type="password"
+    #password
+    placeholder="Enter your password"
+    name="Password"
+  />
+  <br />
+</form>
+<button
+  (click)="getValue(name.value, address.value, contact.value, email.value)"
+>
+  Register
+</button>
+
+<h1>Your Registered Data</h1>
+<br />
+
+<p>Name: {{ displayname }}</p>
+<br />
+
+<p>Address: {{ displayaddress }}</p>
+<br />
+
+<p>Contact: {{ displaycontact }}</p>
+<br />
+
+<p>Email: {{ displayemail }}</p>
+<br />
